@@ -8,7 +8,7 @@
 	<include file="$(find cob_gazebo)/ros/launch/robot.launch" />
 	
 	<!-- start ik_solver for arm -->
-	<node pkg="cob_manipulator" type="cob_ik_solver_kdl" name="cob_ik_solver" ns="arm_controller" cwd="node" respawn="false" output="screen"/>
+	<node pkg="cob_manipulator" type="cob_ik_solver_kdl" name="cob_ik_solver" ns="arm_controller" cwd="node" respawn="false" output="screen"/> 
 
 	<!-- start cartesian interface -->
 	<rosparam command="load" ns="arm_controller" file="$(find cob_arm)/ros/launch/$(env ROBOT).yaml"/>
