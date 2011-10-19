@@ -9,12 +9,16 @@ include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 #  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
 #set(ROS_BUILD_TYPE RelWithDebInfo)
 
+#rosbuild_find_ros_package(actionlib_msgs)
+#include(${actionlib_msgs_PACKAGE_PATH}/cmake/actionbuild.cmake)
+#genaction()
+
 rosbuild_init()
 
 #set the default path for built executables to the "bin" directory
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/ros/bin)
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 #set the default path for built libraries to the "lib" directory
-set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/ros/lib)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 #uncomment if you have defined messages
 #rosbuild_genmsg()
@@ -22,19 +26,14 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/ros/lib)
 #rosbuild_gensrv()
 
 #common commands for building c++ executables and libraries
-#rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
+#rospack_add_library(${PROJECT_NAME} src/example.cpp)
 #target_link_libraries(${PROJECT_NAME} another_library)
-#rosbuild_add_boost_directories()
-#rosbuild_link_boost(${PROJECT_NAME} thread)
-#rosbuild_add_executable(example examples/example.cpp)
+#rospack_add_boost_directories()
+#rospack_link_boost(${PROJECT_NAME} thread)
+#rospack_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
-# add project executable
-rosbuild_add_executable(${PROJECT_NAME} ros/src/${PROJECT_NAME}.cpp)
-rosbuild_add_executable(${PROJECT_NAME}_keyboard ros/src/${PROJECT_NAME}_keyboard.cpp)
-rosbuild_add_executable(keyboard_publisher ros/src/keyboard_publisher.cpp)
-
 # rostest
-rosbuild_add_roslaunch_check(ros/launch/teleop.launch ROBOT=cob3-3 ROBOT_ENV=ipa-kitchen)
-rosbuild_add_roslaunch_check(ros/launch/teleop_keyboard.launch ROBOT=cob3-3 ROBOT_ENV=ipa-kitchen)
-rosbuild_add_roslaunch_check(ros/launch/teleop_keyboard2.launch ROBOT=cob3-3 ROBOT_ENV=ipa-kitchen)
+rosbuild_add_roslaunch_check(ros/launch/2dnav.launch ROBOT=cob3-3 ROBOT_ENV=ipa-kitchen)
+rosbuild_add_roslaunch_check(ros/launch/2dnav_local.launch ROBOT=cob3-3 ROBOT_ENV=ipa-kitchen)
+rosbuild_add_roslaunch_check(ros/launch/2dnav_slam.launch ROBOT=cob3-3 ROBOT_ENV=ipa-kitchen)
